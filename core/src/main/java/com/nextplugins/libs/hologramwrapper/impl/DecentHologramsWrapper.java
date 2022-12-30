@@ -4,8 +4,6 @@ import com.nextplugins.libs.hologramwrapper.HologramWrapper;
 import com.nextplugins.libs.hologramwrapper.utils.ColorUtil;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
-import eu.decentsoftware.holograms.api.holograms.HologramLine;
-import eu.decentsoftware.holograms.api.holograms.HologramPage;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
