@@ -4,3 +4,4 @@ author: eikefab
 version: 1.0.0
 softdepend:
   - HolographicDisplays
+  - DecentHolograms

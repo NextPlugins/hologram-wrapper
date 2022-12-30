@@ -1,5 +1,6 @@
 package com.nextplugins.libs.hologramwrapper;
 
+import com.nextplugins.libs.hologramwrapper.impl.DecentHologramsWrapper;
 import com.nextplugins.libs.hologramwrapper.impl.HolographicDisplaysWrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -16,6 +17,7 @@ public final class HologramController {
     static {
         WRAPPERS = new HashMap<>() {{
             put("HolographicDisplays", HolographicDisplaysWrapper.class);
+            put("DecentHolograms", DecentHologramsWrapper.class);
         }};
     }
 
