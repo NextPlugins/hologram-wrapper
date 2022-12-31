@@ -1,6 +1,6 @@
 package com.nextplugins.libs.hologramwrapper.example;
 
-import com.nextplugins.libs.hologramwrapper.HologramController;
+import com.nextplugins.libs.hologramwrapper.Holograms;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,11 +16,11 @@ public final class HologramWrapperPlugin extends JavaPlugin implements Listener 
         pluginManager = getServer().getPluginManager();
     }
 
-    private HologramController controller;
+    private Holograms controller;
 
     @Override
     public void onEnable() {
-        controller = HologramController.get(this);
+        controller = Holograms.get(this);
 
         if (controller == null) {
             pluginManager.disablePlugin(this);
@@ -36,7 +36,7 @@ public final class HologramWrapperPlugin extends JavaPlugin implements Listener 
         if (controller != null) controller.clear();
     }
 
-    public HologramController getController() {
+    public Holograms getController() {
         return controller;
     }
 

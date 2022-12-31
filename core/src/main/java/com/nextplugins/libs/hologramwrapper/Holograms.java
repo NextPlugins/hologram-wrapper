@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class HologramController {
+public final class Holograms {
 
     public static final Map<String, Class<? extends HologramWrapper>> WRAPPERS;
 
@@ -24,7 +24,7 @@ public final class HologramController {
     private final Plugin plugin;
     private final HologramWrapper wrapper;
 
-    private HologramController(Plugin plugin, HologramWrapper wrapper) {
+    private Holograms(Plugin plugin, HologramWrapper wrapper) {
         this.plugin = plugin;
         this.wrapper = wrapper;
     }
@@ -46,7 +46,7 @@ public final class HologramController {
         return null;
     }
 
-    public static HologramController get(Plugin plugin) {
+    public static Holograms get(Plugin plugin) {
         final HologramWrapper wrapper = findWrapper(plugin);
 
         if (wrapper == null) {
@@ -55,7 +55,7 @@ public final class HologramController {
             return null;
         }
 
-        return new HologramController(plugin, wrapper);
+        return new Holograms(plugin, wrapper);
     }
 
     public Plugin getPlugin() {
