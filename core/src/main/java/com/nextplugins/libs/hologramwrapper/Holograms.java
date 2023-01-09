@@ -29,6 +29,12 @@ public final class Holograms {
         this.wrapper = wrapper;
     }
 
+    /**
+     * Try to use soft-depend plugin.yml list to find a hologram plugin implemented
+     *
+     * @param plugin the plugin
+     * @return the HologramWrapper or null if none is found
+     */
     public static HologramWrapper findWrapper(Plugin plugin) {
         final List<String> dependencies = plugin.getDescription().getSoftDepend();
 
@@ -46,6 +52,12 @@ public final class Holograms {
         return null;
     }
 
+    /**
+     * Creates a new Holograms instance, using Holograms#findWrapper to find a HologramWrapper
+     *
+     * @param plugin the plugin
+     * @return the Holograms instance or null if the HologramWrapper is null
+     */
     public static Holograms get(Plugin plugin) {
         final HologramWrapper wrapper = findWrapper(plugin);
 
@@ -66,14 +78,31 @@ public final class Holograms {
         return wrapper;
     }
 
-    public void create(Location location, List<String> lines) {
-        wrapper.create(location, lines);
+    /**
+     * Create the hologram
+     *
+     * @param location the target location
+     * @param lines the lines
+     * @return the hologram id
+     */
+    public Object create(Location location, List<String> lines) {
+        return wrapper.create(location, lines);
     }
 
-    public void create(Location location, String... lines) {
-        wrapper.create(location, lines);
+    /**
+     * Create the hologram, but using array instead of list
+     *
+     * @param location the target location
+     * @param lines the lines
+     * @return the hologram id
+     */
+    public Object create(Location location, String... lines) {
+        return wrapper.create(location, lines);
     }
 
+    /**
+     * Deletes all holograms created through the wrapper
+     */
     public void clear() {
         wrapper.clear();
     }
