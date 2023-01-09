@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface HologramWrapper {
 
-    void create(Location location, List<String> lines);
+    Object create(Location location, List<String> lines);
     void clear();
+    void delete(Object id);
 
-    default void create(Location location, String... lines) {
-        create(location, List.of(lines));
+    default Object create(Location location, String... lines) {
+        return create(location, List.of(lines));
     }
 
 }

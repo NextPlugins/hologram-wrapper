@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public final class ColorUtil {
 
-    public static char ALT_COLOR_CHAR = '&';
+    private static final char ALT_COLOR_CHAR = '&';
 
     private ColorUtil() {}
 
     public static String of(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+        return ChatColor.translateAlternateColorCodes(ALT_COLOR_CHAR, string);
     }
 
     public static List<String> of(List<String> strings) {

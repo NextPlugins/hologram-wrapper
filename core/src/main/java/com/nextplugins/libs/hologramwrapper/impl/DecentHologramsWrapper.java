@@ -12,11 +12,9 @@ import java.util.List;
 
 public class DecentHologramsWrapper implements HologramWrapper {
 
-    private final Plugin plugin;
     private final List<String> holograms;
 
     public DecentHologramsWrapper(Plugin plugin) {
-        this.plugin = plugin;
         this.holograms = new ArrayList<>();
     }
 
@@ -25,13 +23,15 @@ public class DecentHologramsWrapper implements HologramWrapper {
     }
 
     @Override
-    public void create(Location location, List<String> lines) {
+    public Object create(Location location, List<String> lines) {
         final String name = "DHHW-" + pseudoRandomString();
 
         final Hologram hologram = DHAPI.createHologram(name, location, ColorUtil.of(lines));
 
         hologram.enable();
         holograms.add(name);
+
+        return name;
     }
 
     @Override
@@ -43,6 +43,15 @@ public class DecentHologramsWrapper implements HologramWrapper {
 
             hologram.delete();
         }
+    }
+
+    @Override
+    public void delete(Object id) {
+        final Hologram hologram = DHAPI.getHologram(id.toString());
+
+        if (hologram == null) return;
+
+        hologram.delete();
     }
 
     private String pseudoRandomString() {

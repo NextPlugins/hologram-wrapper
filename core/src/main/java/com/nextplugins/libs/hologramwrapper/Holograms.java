@@ -66,12 +66,12 @@ public final class Holograms {
         return wrapper;
     }
 
-    public void create(Location location, List<String> lines) {
-        wrapper.create(location, lines);
+    public Object create(Location location, List<String> lines) {
+        return wrapper.create(location, lines);
     }
 
-    public void create(Location location, String... lines) {
-        wrapper.create(location, lines);
+    public Object create(Location location, String... lines) {
+        return wrapper.create(location, lines);
     }
 
     public void clear() {
