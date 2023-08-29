@@ -27,7 +27,7 @@ public class DecentHologramsWrapper implements HologramWrapper {
 
     @Override
     public Object create(Location location, List<String> lines) {
-        final String name = "DHHW-" + pseudoRandomString();
+        final String name = generateId();
 
         final Hologram hologram = DHAPI.createHologram(name, location, ColorUtil.of(lines));
 
@@ -42,10 +42,13 @@ public class DecentHologramsWrapper implements HologramWrapper {
         for (String name : holograms) {
             final Hologram hologram = DHAPI.getHologram(name);
 
-            if (hologram == null) continue;
+            holograms.remove(name);
+
+            if (hologram == null) {
+                continue;
+            }
 
             hologram.delete();
-            holograms.remove(name);
         }
     }
 
@@ -60,8 +63,8 @@ public class DecentHologramsWrapper implements HologramWrapper {
         holograms.remove(name);
     }
 
-    private String pseudoRandomString() {
-        return Long.toHexString(System.currentTimeMillis());
+    private String generateId() {
+        return "DHHW-" + Long.toHexString(System.currentTimeMillis());
     }
 
 }
