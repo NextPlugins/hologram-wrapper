@@ -8,23 +8,26 @@ import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class DecentHologramsWrapper implements HologramWrapper {
 
-    private final List<String> holograms;
+    private final Queue<String> holograms;
 
     public DecentHologramsWrapper(Plugin plugin) {
-        this.holograms = new ArrayList<>();
+        this.holograms = new ConcurrentLinkedDeque<>();
     }
 
-    public List<String> getHolograms() {
+    public Queue<String> getHolograms() {
         return holograms;
     }
 
     @Override
     public Object create(Location location, List<String> lines) {
-        final String name = "DHHW-" + pseudoRandomString();
+        final String name = generateId();
 
         final Hologram hologram = DHAPI.createHologram(name, location, ColorUtil.of(lines));
 
@@ -39,7 +42,11 @@ public class DecentHologramsWrapper implements HologramWrapper {
         for (String name : holograms) {
             final Hologram hologram = DHAPI.getHologram(name);
 
-            if (hologram == null) continue;
+            holograms.remove(name);
+
+            if (hologram == null) {
+                continue;
+            }
 
             hologram.delete();
         }
@@ -47,15 +54,17 @@ public class DecentHologramsWrapper implements HologramWrapper {
 
     @Override
     public void delete(Object id) {
-        final Hologram hologram = DHAPI.getHologram(id.toString());
+        final String name = id.toString();
+        final Hologram hologram = DHAPI.getHologram(name);
 
         if (hologram == null) return;
 
         hologram.delete();
+        holograms.remove(name);
     }
 
-    private String pseudoRandomString() {
-        return Long.toHexString(System.currentTimeMillis());
+    private String generateId() {
+        return "DHHW-" + Long.toHexString(System.currentTimeMillis());
     }
 
 }
